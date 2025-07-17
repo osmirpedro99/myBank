@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cost;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Redirect;
 
 class CostController extends Controller
 {
@@ -20,17 +23,24 @@ class CostController extends Controller
      */
     public function create()
     {
-        dd('oi');
         //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
+        $cost = Cost::create([
+            'name' => $request->name,
+            'amount' => (int) $request->amount,
+            'paymentType' => $request->paymentType,
+            'quantity' => $request->quantity,
+        ]);
 
-        //
+        event(new Registered($cost));
+
+        return redirect('/dashboard');
     }
 
     /**

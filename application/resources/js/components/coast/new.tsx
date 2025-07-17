@@ -29,8 +29,8 @@ import { useState } from 'react';
 type CostsForm = {
     name: string;
     amount: string;
-    // paymentType: number;
-    // quantity: number;
+    paymentType: number;
+    quantity: number;
 };
 
 
@@ -40,8 +40,8 @@ export function NewCosts() {
     const { data, setData, post, processing, errors, reset } = useForm<Required<CostsForm>>({
         name: '' ,
         amount: '',
-        // paymentType: 0,
-        // quantity: 0,
+        paymentType: 1,
+        quantity: 1,
     });
 
     const submit: FormEventHandler = (e) => {
