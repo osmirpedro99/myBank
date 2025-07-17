@@ -49,15 +49,14 @@ export function NewCosts() {
         console.log(e);
         post(route('add_cost'),{
             onSuccess: () => {
-                reset(); // Limpa o formulário após o sucesso
-                setOpen(false); // Fecha o diálogo ao submeter com sucesso
+                reset(); // clear form
+                setOpen(false); // Close dialog
+                window.location.reload();
             },
             onError: (formErrors) => {
                 console.error("Erros de validação:", formErrors);
-                // O InertiaJS já lida com a exibição de erros, mas você pode adicionar lógica extra aqui
             },
             onFinish: () => {
-                // redirect('dashbord');
             },
         });
     };

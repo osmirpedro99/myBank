@@ -15,6 +15,8 @@ class CostController extends Controller
      */
     public function index()
     {
+        $costs = Cost::all();
+        return response()->json($costs);
         //
     }
 
@@ -40,7 +42,7 @@ class CostController extends Controller
 
         event(new Registered($cost));
 
-        return redirect('/dashboard');
+        return redirect('dashboard');
     }
 
     /**
